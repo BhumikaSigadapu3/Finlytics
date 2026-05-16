@@ -46,6 +46,7 @@ Add your screenshots under the `screenshots/` folder, then reference them here.
 ### Dashboard
 
 Dashboard
+![Dashboard](./screenshots/Dashboard.png)
 
 ### Transactions
 
