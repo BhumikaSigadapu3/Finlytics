@@ -1,0 +1,14 @@
+# Dependencies
+node_modules/
+
+# Env
+.env
+.env.local
+
+# Build
+client/dist/
+*.log
+
+# OS
+.DS_Store
+Thumbs.db

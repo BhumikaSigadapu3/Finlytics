@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply bg-slate-50 text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100;
+}
+
+/* Custom DateInput: hide native icon, keep click target on the right */
+.date-input-wrap .date-input {
+  padding-right: 2.5rem;
+  color-scheme: light;
+}
+
+.dark .date-input-wrap .date-input {
+  color-scheme: dark;
+}
+
+.date-input-wrap .date-input::-webkit-calendar-picker-indicator {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 2.75rem;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+  opacity: 0;
+}

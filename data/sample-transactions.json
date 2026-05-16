@@ -1,0 +1,23 @@
+[
+  {
+    "amount": 120.5,
+    "type": "expense",
+    "category": "Food",
+    "date": "2026-05-01T12:00:00.000Z",
+    "description": "Weekly groceries"
+  },
+  {
+    "amount": 5000,
+    "type": "income",
+    "category": "Salary",
+    "date": "2026-05-01T09:00:00.000Z",
+    "description": "Monthly salary"
+  },
+  {
+    "amount": 45,
+    "type": "expense",
+    "category": "Travel",
+    "date": "2026-05-03T08:30:00.000Z",
+    "description": "Metro pass"
+  }
+]
