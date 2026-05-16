@@ -6,6 +6,8 @@ Managing money across categories and time periods is easier when everything live
 
 This project demonstrates production-oriented patterns: REST APIs with MVC structure, JWT-based auth with role-based access, MongoDB aggregations for analytics, and a modern React frontend with Tailwind CSS and Recharts.
 
+### Deployment status: A public live URL will be linked here once deployment is complete
+
 ---
 
 ## Features
