@@ -43,8 +43,6 @@ This project demonstrates production-oriented patterns: REST APIs with MVC struc
 
 ## Screenshots
 
-Add your screenshots under the `screenshots/` folder, then reference them here.
-
 ### Dashboard
 
 Overview of income, expenses, balance, and analytics charts for the selected date range
@@ -87,6 +85,83 @@ Finlytics admin panel
 - [Node.js](https://nodejs.org/) 18 or higher
 - [MongoDB](https://www.mongodb.com/) (local instance or [MongoDB Atlas](https://www.mongodb.com/atlas))
 - npm (included with Node.js)
+
+**Docker (optional)**
+
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/) (or Docker Engine + Docker Compose v2)
+
+---
+
+## Run with Docker
+
+Run the full stack (MongoDB, API, and frontend) in containers—no local Node or MongoDB install required.
+
+### 1. Configure environment
+
+From the project root:
+
+```bash
+cp .env.docker.example .env
+```
+
+Edit `.env` and set a strong `JWT_SECRET`.
+
+### 2. Start services
+
+```bash
+docker compose up --build -d
+```
+
+Or use the npm script:
+
+```bash
+npm run docker:up
+```
+
+### 3. Open the app
+
+| Service | URL |
+|---------|-----|
+| **Web app** | [http://localhost:8080](http://localhost:8080) |
+| **API** | [http://localhost:5000/api/health](http://localhost:5000/api/health) |
+
+The frontend nginx container proxies `/api` to the backend.
+
+### 4. Seed sample data (optional)
+
+```bash
+docker compose exec server npm run seed
+# or: npm run docker:seed
+```
+
+Demo logins: `demo@example.com` / `demo1234`, `admin@example.com` / `admin1234`
+
+### Useful commands
+
+```bash
+docker compose logs -f          # follow logs
+docker compose down             # stop containers
+docker compose down -v          # stop and remove database volume
+npm run docker:logs
+npm run docker:down
+```
+
+### Docker architecture
+
+```
+Browser → client (nginx :8080) → /api → server (:5000) → mongo (:27017)
+```
+
+| File | Purpose |
+|------|---------|
+| `docker-compose.yml` | Orchestrates mongo, server, client |
+| `server/Dockerfile` | Node.js API image |
+| `client/Dockerfile` | Vite build + nginx static hosting |
+| `client/nginx.conf` | SPA routing and API reverse proxy |
+| `.env.docker.example` | Root env template for Compose |
+
+To use **MongoDB Atlas** instead of the bundled `mongo` service, remove or disable the `mongo` service in `docker-compose.yml` and set `MONGODB_URI` on the `server` service to your Atlas connection string.
+
 
 ---
 
