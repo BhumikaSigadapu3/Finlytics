@@ -78,7 +78,7 @@ Admin
 ### Clone the repository
 
 ```bash
-git clone https://github.com/your-username/finlytics.git
+git clone https://github.com/BhumikaSigadapu3/Finlytics.git
 cd finlytics
 ```
 
