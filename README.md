@@ -312,14 +312,14 @@ Base URL: `http://localhost:5000/api`
 ### Transactions (`/api/transactions`)
 
 
-| Method | Endpoint      | Description                                                            |
-| ------ | ------------- | ---------------------------------------------------------------------- |
-| GET    | `/`           | List transactions (`?status=completed|scheduled`, filters, pagination) |
-| POST   | `/`           | Create transaction                                                     |
-| GET    | `/:id`        | Get one transaction                                                    |
-| PUT    | `/:id`        | Update transaction                                                     |
-| DELETE | `/:id`        | Delete transaction                                                     |
-| GET    | `/categories` | List predefined categories                                             |
+| Method | Endpoint      | Description                           |
+| ------ | ------------- | ------------------------------------- |
+| GET    | `/`           | List transactions (`?status=completed |
+| POST   | `/`           | Create transaction                    |
+| GET    | `/:id`        | Get one transaction                   |
+| PUT    | `/:id`        | Update transaction                    |
+| DELETE | `/:id`        | Delete transaction                    |
+| GET    | `/categories` | List predefined categories            |
 
 
 ### Analytics (`/api/analytics`)
