@@ -4,6 +4,7 @@ node_modules/
 # Env
 .env
 .env.local
+!.env.docker.example
 
 # Build
 client/dist/

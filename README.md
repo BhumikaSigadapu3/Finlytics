@@ -6,7 +6,7 @@ Managing money across categories and time periods is easier when everything live
 
 This project demonstrates production-oriented patterns: REST APIs with MVC structure, JWT-based auth with role-based access, MongoDB aggregations for analytics, and a modern React frontend with Tailwind CSS and Recharts.
 
-### Deployment status: A public live URL will be linked here once deployment is complete
+> **Deployment status:** A production release on **Amazon Web Services (AWS)** is in progress. The planned architecture includes a containerized Node.js API, MongoDB Atlas for data persistence, and static frontend delivery via S3 and CloudFront. A public live URL will be linked here once deployment is complete.
 
 ---
 
@@ -45,42 +45,39 @@ This project demonstrates production-oriented patterns: REST APIs with MVC struc
 
 ### Dashboard
 
-Overview of income, expenses, balance, and analytics charts for the selected date range
+Overview of income, expenses, balance, and analytics charts for the selected date range.
 
-Finlytics dashboard with summary cards and charts
-![Dashboard](./screenshots/Dashboard.png)
+![Finlytics dashboard with summary cards and charts](./screenshots/Dashboard.png)
 
 ### Transactions
 
-Completed and scheduled transactions with filters, pagination, and CSV export
+Completed and scheduled transactions with filters, pagination, and CSV export.
 
-Finlytics transactions page
-![Transactions](./screenshots/Transactions.png)
+![Finlytics transactions page](./screenshots/Transactions.png)
 
 ### Add Transaction
 
-Create income or expense entries with category, date, and description
+Create income or expense entries with category, date, and description.
 
-Add transaction modal
-![Add Transaction](./screenshots/Add_Transaction.png)
+![Add transaction modal](./screenshots/Add_Transaction.png)
 
 ### Scheduled Transaction
 
-Future-dated entries are saved as scheduled and excluded from balance and charts until due
+Future-dated entries are saved as scheduled and excluded from balance and charts until due.
 
-Scheduled transaction with future date
-![Scheduled](./screenshots/Add_Scheduled_Transaction.png)
+![Scheduled transaction with future date](./screenshots/Add_Scheduled_Transaction.png)
 
 ### Admin Panel
 
-Administrators can view system stats and manage user roles
+Administrators can view system stats and manage user roles.
 
-Finlytics admin panel
-![Admin](./screenshots/AdminPanel.png)
+![Finlytics admin panel](./screenshots/AdminPanel.png)
 
 ---
 
 ## Prerequisites
+
+**Local development**
 
 - [Node.js](https://nodejs.org/) 18 or higher
 - [MongoDB](https://www.mongodb.com/) (local instance or [MongoDB Atlas](https://www.mongodb.com/atlas))
@@ -161,7 +158,6 @@ Browser → client (nginx :8080) → /api → server (:5000) → mongo (:27017)
 | `.env.docker.example` | Root env template for Compose |
 
 To use **MongoDB Atlas** instead of the bundled `mongo` service, remove or disable the `mongo` service in `docker-compose.yml` and set `MONGODB_URI` on the `server` service to your Atlas connection string.
-
 
 ---
 
@@ -268,8 +264,12 @@ In development, Vite proxies `/api` to the backend, so you can omit `VITE_API_UR
 
 ```
 finlytics/
+├── docker-compose.yml      # Full stack (mongo + API + client)
+├── .env.docker.example     # Docker Compose env template
 ├── client/                 # React frontend (Vite)
 │   ├── public/
+│   ├── Dockerfile          # nginx production image
+│   ├── nginx.conf          # API proxy + SPA fallback
 │   └── src/
 │       ├── components/     # UI components (charts, forms, layout)
 │       ├── context/        # Auth & theme (Context API)
@@ -277,6 +277,7 @@ finlytics/
 │       ├── services/       # Axios API clients
 │       └── utils/          # Helpers (CSV export, session)
 ├── server/                 # Express API
+│   ├── Dockerfile          # Node.js API image
 │   ├── config/             # Database connection
 │   ├── constants/          # Categories, roles, statuses
 │   ├── controllers/        # Route handlers (MVC)
@@ -344,6 +345,23 @@ Base URL: `http://localhost:5000/api`
 
 
 Protected routes require header: `Authorization: Bearer <token>`.
+
+---
+
+## Deployment (Roadmap)
+
+Finlytics can be run locally with **Docker Compose** (see [Run with Docker](#run-with-docker)) for a production-like environment on your machine.
+
+A **cloud deployment on Amazon Web Services (AWS)** is planned next:
+
+| Component | Planned AWS service |
+|-----------|---------------------|
+| Frontend | Amazon S3 + CloudFront (or ECS behind ALB) |
+| API | **Amazon ECS (Docker)** — same images as `server/Dockerfile` |
+| Database | MongoDB Atlas |
+| Secrets | AWS Systems Manager Parameter Store |
+
+A public live URL will be added to this README when deployment is complete. Until then, use Docker or the [manual installation](#installation--setup) steps below.
 
 ---
 
