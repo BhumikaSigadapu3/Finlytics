@@ -45,24 +45,38 @@ Add your screenshots under the `screenshots/` folder, then reference them here.
 
 ### Dashboard
 
-Dashboard
+Overview of income, expenses, balance, and analytics charts for the selected date range
+
+Finlytics dashboard with summary cards and charts
 ![Dashboard](./screenshots/Dashboard.png)
 
 ### Transactions
 
-Transactions
+Completed and scheduled transactions with filters, pagination, and CSV export
 
-### Add / Edit Transaction
+Finlytics transactions page
+![Transactions](./screenshots/Transactions.png)
 
-Add Transaction
+### Add Transaction
 
-### Analytics View
+Create income or expense entries with category, date, and description
 
-Analytics
+Add transaction modal
+![Add Transaction](./screenshots/Add_Transaction.png)
+
+### Scheduled Transaction
+
+Future-dated entries are saved as scheduled and excluded from balance and charts until due
+
+Scheduled transaction with future date
+![Scheduled](./screenshots/Add_Scheduled_Transaction.png)
 
 ### Admin Panel
 
-Admin
+Administrators can view system stats and manage user roles
+
+Finlytics admin panel
+![Admin](./screenshots/AdminPanel.png)
 
 ---
 
